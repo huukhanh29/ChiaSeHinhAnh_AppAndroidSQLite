@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:id="@+id/grp_loaitour">
+        <item
+            android:id="@+id/mnu_dangnhap"
+            android:title="Đăng nhập lại" />
+        <item
+            android:id="@+id/mnu_dangky"
+            android:title="Đăng ký" />
+    </group>
+</menu>
