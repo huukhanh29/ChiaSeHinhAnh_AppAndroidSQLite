@@ -12,24 +12,26 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_NGUOIDUNG = "NguoiDung";
     public static final String ND_ID = "id";
     public static final String ND_TENDANGNHAP = "tendangnhap";
+    public static final String ND_HOTEN = "hoten";
     public static final String ND_MATKHAU = "matkhau";
     private static final String CREATE_TABLE_NGUOIDUNG
             = "CREATE TABLE " + TABLE_NGUOIDUNG + "("
             + ND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ND_TENDANGNHAP + " TEXT NOT NULL UNIQUE, "
+            + ND_HOTEN + " TEXT NOT NULL UNIQUE, "
             + ND_MATKHAU + " TEXT NOT NULL);";
 
     // Define table BaiViet
     public static final String TABLE_BAIVIET = "BaiViet";
     public static final String BV_ID = "id";
-    public static final String BV_TIEUDE = "tieude";
     public static final String BV_NOIDUNG = "noidung";
+    public static final String BV_IMAGE = "image";
     public static final String BV_ID_NGUOIDUNG = "id_nguoidung";
     private static final String CREATE_TABLE_BAIVIET
             = "CREATE TABLE " + TABLE_BAIVIET + "("
             + BV_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + BV_TIEUDE + " TEXT NOT NULL, "
             + BV_NOIDUNG + " TEXT NOT NULL, "
+            + BV_IMAGE + " TEXT NOT NULL, "
             + BV_ID_NGUOIDUNG + " INTEGER NOT NULL, "
             + "FOREIGN KEY(" + BV_ID_NGUOIDUNG + ") REFERENCES " + TABLE_NGUOIDUNG + "(" + ND_ID + "));";
 

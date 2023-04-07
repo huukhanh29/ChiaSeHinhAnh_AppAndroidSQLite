@@ -18,10 +18,36 @@ public class NguoiDungAdapter {
         myDbHelper = new DbHelper(context);
         db = myDbHelper.getWritableDatabase();
     }
+    public int getIdNguoiDung(String tenDangNhap) {
+        String query = "SELECT " + DbHelper.ND_ID + " FROM " + DbHelper.TABLE_NGUOIDUNG +
+                " WHERE " + DbHelper.ND_TENDANGNHAP + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[] {tenDangNhap});
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(0);
+            cursor.close();
+            return id;
+        }
+        return -1;
+    }
+    public String getTenNguoiDungById(int id) {
+        String query = "SELECT " + DbHelper.ND_HOTEN + " FROM " + DbHelper.TABLE_NGUOIDUNG +
+                " WHERE " + DbHelper.ND_ID + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[] {String.valueOf(id)});
+        if (cursor != null && cursor.moveToFirst()) {
+            String tenNguoiDung = cursor.getString(0);
+            cursor.close();
+            return tenNguoiDung;
+        }
+        return null;
+    }
+
+
+
     public long insertNguoiDung(NguoiDung nguoidung) {
         db = myDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbHelper.ND_TENDANGNHAP, nguoidung.getTenDangNhap());
+        values.put(DbHelper.ND_HOTEN, nguoidung.getHoTen());
         values.put(DbHelper.ND_MATKHAU, nguoidung.getMatKhau());
         return db.insert(DbHelper.TABLE_NGUOIDUNG,
                 null, values);
